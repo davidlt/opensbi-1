@@ -55,12 +55,12 @@ enum sbi_ext_starfive_fid {
 };
 
 /* clang-format on */
-
+/*
 #define ROOT_FW_REGION		0
 #define ROOT_ALL_REGION		1
 #define ROOT_END_REGION		2
 static struct sbi_domain_memregion vic7100_root_memregs[ROOT_END_REGION + 1] = { 0 };
-
+*/
 static struct plic_data plic = {
 	.addr = VIC7100_PLIC_ADDR,
 	.num_src = VIC7100_PLIC_NUM_SOURCES,
@@ -223,6 +223,7 @@ static int vic7100_vendor_ext_provider(long extid, long funcid,
 	return ret;
 }
 
+#if 0
 static int vic7100_domains_init(void)
 {
 	int i, rc = -1;
@@ -250,6 +251,7 @@ static int vic7100_domains_init(void)
 
 	return rc;
 }
+#endif
 
 const struct sbi_platform_operations platform_ops = {
 	.early_init          	= vic7100_early_init,
@@ -259,7 +261,7 @@ const struct sbi_platform_operations platform_ops = {
 	.ipi_init		= vic7100_ipi_init,
 	.get_tlbr_flush_limit	= vic7100_get_tlbr_flush_limit,
 	.timer_init		= vic7100_timer_init,
-	.domains_init		= vic7100_domains_init,
+//	.domains_init		= vic7100_domains_init,
 	.vendor_ext_provider	= vic7100_vendor_ext_provider
 };
 
